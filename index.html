@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Roman (Romy) Mondello</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{background:#050507}
+    body{background:#050507;color:#f4f4f5;min-height:100vh;overflow-x:hidden}
+    @media(hover:hover){body{cursor:none}}
+    #orb{position:fixed;width:160px;height:160px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%);mix-blend-mode:screen;transition:opacity .4s;opacity:0}
+    #dot{position:fixed;width:5px;height:5px;border-radius:50%;background:rgba(139,92,246,.5);pointer-events:none;z-index:10000;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(139,92,246,.3);transition:opacity .4s;opacity:0}
+    @media(hover:none){#orb,#dot{display:none}}
+    #page{position:relative;margin:0 auto}
+    .ln{position:absolute;white-space:pre;pointer-events:none}
+    #vignette{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9997;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4) 100%)}
+  </style>
+</head>
+<body>
+  <div id="vignette"></div>
+  <div id="orb"></div>
+  <div id="dot"></div>
+  <div id="page"></div>
+
+  <script type="module">
+    import{prepareWithSegments,layoutNextLine}from'https://esm.sh/@chenglou/pretext@0.0.3'
+
+    const rgb=c=>`rgb(${c[0]},${c[1]},${c[2]})`
+    const C_W=[244,244,245],C_B=[161,161,170],C_M=[113,113,122],C_D=[82,82,91],C_V=[139,92,246]
+    const INTER=(s,w=400)=>`${w===700?'bold ':w===600?'600 ':''}${s}px Inter`
+    const GEIST=s=>`${s}px "Geist Mono"`
+    const lerp=(a,b,t)=>a+(b-a)*t,clamp=(v,l,h)=>Math.max(l,Math.min(h,v))
+    const M=()=>innerWidth<520
+
+    function makeBlocks(){
+      const m=M(),bs=m?13:14,blh=m?20:22,hs=15,hlh=m?20:22
+      const ms=m?11:13,mlh=m?18:22,sg=m?32:44,ig=m?18:22
+      return[
+        {t:'Roman (Romy) Mondello',f:INTER(m?26:36,700),lh:m?34:44,c:C_W,mb:m?6:10},
+        {t:'Senior Software Engineer \u2014 AI Systems & Infrastructure',f:INTER(m?14:16),lh:m?20:24,c:C_B,mb:m?4:6},
+        {t:'Less noise. More signal.',f:INTER(m?12:14),lh:m?18:22,c:C_M,mb:m?4:6},
+        {t:'Open to relocation \u00b7 SF / onsite / hybrid',f:INTER(m?12:14),lh:m?18:22,c:C_M,mb:sg},
+        {t:'EXPERIENCE',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
+        {t:'SigilX \u00b7 Lead Engineer \u00b7 2025 \u2013 present',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'Decentralized certification protocol on Base. Full-stack ownership: React/Next.js frontend, x402 payment gateway with USDC settlement, on-chain evaluator staking (ERC-8183), VRF-selected verification committees, Privy smart wallet integration. Eight production services. Solidity contracts in Foundry. XMTP messaging. World ID for Sybil resistance.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
+        {t:'EdgeKit SDK \u00b7 Founder \u00b7 2025 \u2013 present',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'On-device inference stack for Apple Silicon \u2014 Core ML, Swift, C++, MLX.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
+        {t:'Further \u00b7 Research Engineer \u00b7 2025',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'LangGraph agent pipelines integrated with Zillow and mortgage APIs for financial planning workflows.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
+        {t:'Pillzumi \u00b7 ML Engineer \u00b7 2024 \u2013 2025',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'Social agents on Twitter/X built on elizaOS.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
+        {t:'Verus AI \u00b7 Data Scientist \u00b7 2022 \u2013 2023',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'Ethereum analytics and forecast models. LLM-based automation for product capabilities.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
+        {t:'Knox Financial \u00b7 Staff Software Engineer \u00b7 2020 \u2013 2021',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
+        {t:'Backend infrastructure for real estate investment automation. Distributed data ingestion pipelines, financial forecasting services. Mentored engineers. Improved CI/CD reliability.',f:INTER(bs),lh:blh,c:C_B,mb:sg},
+        {t:'TECHNICAL',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
+        ...(m?[
+          {t:'TypeScript \u00b7 JavaScript \u00b7 Python \u00b7 Solidity \u00b7 Swift \u00b7 C++ \u00b7 Rust \u00b7 Go \u00b7 Lean',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
+          {t:'React \u00b7 Next.js \u00b7 Tailwind \u00b7 shadcn/ui',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
+          {t:'Node.js \u00b7 Hono \u00b7 FastAPI',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
+          {t:'Core ML \u00b7 MLX \u00b7 LangGraph \u00b7 elizaOS \u00b7 OpenClaw',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
+          {t:'Foundry \u00b7 Privy \u00b7 XMTP \u00b7 x402 \u00b7 World ID \u00b7 ERC-8183',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
+          {t:'Docker \u00b7 Railway \u00b7 Supabase \u00b7 Vitest \u00b7 pnpm \u00b7 Nix',f:GEIST(ms),lh:mlh,c:C_B,mb:sg,mn:1},
+        ]:[
+          {t:'Languages      TypeScript \u00b7 JavaScript \u00b7 Python \u00b7 Solidity \u00b7 Swift \u00b7 C++ \u00b7 Rust \u00b7 Go \u00b7 Lean',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
+          {t:'Frontend       React \u00b7 Next.js \u00b7 Tailwind \u00b7 shadcn/ui',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
+          {t:'Backend        Node.js \u00b7 Hono \u00b7 FastAPI',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
+          {t:'AI/ML          Core ML \u00b7 MLX \u00b7 LangGraph \u00b7 elizaOS \u00b7 OpenClaw \u00b7 RL environments',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
+          {t:'Blockchain     Foundry \u00b7 Privy \u00b7 XMTP \u00b7 x402 \u00b7 World ID \u00b7 Uniswap V4 \u00b7 ERC-8183',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
+          {t:'Infrastructure Docker \u00b7 Railway \u00b7 Supabase \u00b7 Vitest \u00b7 pnpm \u00b7 Nix',f:GEIST(ms),lh:mlh,c:C_B,mb:sg,mn:1},
+        ]),
+        {t:'EDUCATION',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
+        {t:'Associate of Science, Computer Science \u00b7 Dean\u2019s List',f:INTER(bs),lh:blh,c:C_B,mb:sg},
+        {t:'HACKATHONS',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
+        {t:'Clawd.kitchen \u2014 2nd place',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
+        {t:'OpenAI Parameter Golf \u2014 notable submission',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
+        {t:'Worldchain \u00d7 Coinbase',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
+        {t:'Synthesis',f:INTER(bs),lh:blh,c:C_B,mb:sg},
+        {t:'Layout powered by Pretext',f:INTER(m?10:11),lh:m?16:18,c:C_D,mb:m?40:64},
+      ]
+    }
+
+    let mx=-9999,my=-9999,onScreen=false,smx=-9999,smy=-9999,isTouch=false
+    const CPAD=12,MSLOT=40
+    function CR(){return isTouch?50:70}
+    const page=document.getElementById('page'),orbEl=document.getElementById('orb'),dotEl=document.getElementById('dot')
+    function colW(){const v=innerWidth;return v<520?v-32:v<768?v-64:Math.min(640,v-120)}
+    function colL(){return Math.max(16,(innerWidth-colW())/2)}
+
+    let prepared=[]
+    function prepareAll(){prepared=makeBlocks().map(b=>({...b,prep:prepareWithSegments(b.t,b.f)}))}
+
+    function circIv(cx,cy,r,bt,bb){
+      const p=CPAD,t=bt-p,b=bb+p
+      if(t>=cy+r||b<=cy-r)return null
+      const dy=(cy>=t&&cy<=b)?0:(cy<t?t-cy:cy-b)
+      if(dy>=r)return null
+      const hw=Math.sqrt(r*r-dy*dy)
+      return{left:cx-hw-p,right:cx+hw+p}
+    }
+    function carve(bl,br,blocked){
+      let s=[{left:bl,right:br}]
+      for(const b of blocked){const n=[];for(const sl of s){if(b.right<=sl.left||b.left>=sl.right){n.push(sl);continue};if(b.left>sl.left)n.push({left:sl.left,right:b.left});if(b.right<sl.right)n.push({left:b.right,right:sl.right})};s=n}
+      return s.filter(x=>x.right-x.left>=MSLOT)
+    }
+
+    const pool=[];let pi=0
+    function sp(){if(pi<pool.length)return pool[pi++];const e=document.createElement('span');e.className='ln';page.appendChild(e);pool.push(e);pi++;return e}
+    function hide(){for(let i=pi;i<pool.length;i++){pool[i].style.opacity='0';pool[i].textContent=''}}
+
+    function glow(bc,lx,ly){
+      if(!onScreen)return{color:rgb(bc),shadow:''}
+      const dx=lx-smx,dy=ly-smy,d=Math.sqrt(dx*dx+dy*dy)
+      const t=clamp(1-d/250,0,1),t2=t*t
+      if(t2<.01)return{color:rgb(bc),shadow:''}
+      return{color:`rgb(${Math.round(lerp(bc[0],C_V[0],t2))},${Math.round(lerp(bc[1],C_V[1],t2))},${Math.round(lerp(bc[2],C_V[2],t2))})`,shadow:`0 0 ${6*t2}px rgba(139,92,246,${.4*t2})`}
+    }
+
+    function layoutAll(){
+      pi=0;const cw=colW(),cl=colL(),cr=CR()
+      let y=M()?48:80
+      for(const block of prepared){
+        const{prep,f,lh,c,mb,ls,mn}=block
+        let cur={segmentIndex:0,graphemeIndex:0},lineY=y,done=false
+        while(!done){
+          const blocked=[]
+          if(onScreen){const iv=circIv(smx,smy,cr,lineY,lineY+lh);if(iv)blocked.push(iv)}
+          const slots=carve(cl,cl+cw,blocked)
+          if(slots.length===0){lineY+=lh;if(lineY>y+2000)break;continue}
+          for(const slot of slots){
+            const line=layoutNextLine(prep,cur,slot.right-slot.left)
+            if(!line){done=true;break}
+            const el=sp();el.textContent=line.text
+            const{color:col,shadow}=glow(c,slot.left+line.width/2,lineY+lh/2)
+            el.style.cssText=`position:absolute;left:${slot.left}px;top:${lineY}px;font:${f};color:${col};white-space:pre;opacity:1;pointer-events:none`
+            if(shadow)el.style.textShadow=shadow
+            if(ls)el.style.letterSpacing=ls
+            if(mn)el.style.fontFamily='"Geist Mono",monospace'
+            cur=line.end
+          }
+          lineY+=lh
+        }
+        y=lineY+(mb||0)
+      }
+      page.style.height=y+'px';hide()
+    }
+
+    function tick(){
+      if(onScreen){smx=lerp(smx,mx,.15);smy=lerp(smy,my,.15)}
+      else{smx=lerp(smx,-9999,.08);smy=lerp(smy,-9999,.08)}
+      layoutAll();requestAnimationFrame(tick)
+    }
+
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY+scrollY;onScreen=true;isTouch=false;if(smx<-1000){smx=mx;smy=my};orbEl.style.left=e.clientX+'px';orbEl.style.top=e.clientY+'px';orbEl.style.opacity='1';dotEl.style.left=e.clientX+'px';dotEl.style.top=e.clientY+'px';dotEl.style.opacity='1'})
+    document.addEventListener('mouseleave',()=>{mx=-9999;my=-9999;onScreen=false;orbEl.style.opacity='0';dotEl.style.opacity='0'})
+    document.addEventListener('touchstart',e=>{isTouch=true;const p=e.touches[0];mx=p.clientX;my=p.clientY+scrollY;onScreen=true;if(smx<-1000){smx=mx;smy=my}},{passive:true})
+    document.addEventListener('touchmove',e=>{const p=e.touches[0];mx=p.clientX;my=p.clientY+scrollY;onScreen=true;isTouch=true;if(smx<-1000){smx=mx;smy=my}},{passive:true})
+    document.addEventListener('touchend',()=>{mx=-9999;my=-9999;onScreen=false})
+
+    document.fonts.ready.then(()=>{prepareAll();requestAnimationFrame(tick);let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(prepareAll,150)})})
+  </script>
+</body>
+</html>
