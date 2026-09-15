@@ -1,199 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Roman (Romy) Mondello</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Romy Mondello is a senior AI and systems engineer, founder, and independent researcher building agent infrastructure, developer tools, formal verification, and scientific computing systems.">
+  <meta name="theme-color" content="#10110f">
+  <title>Romy Mondello — AI &amp; Systems Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{background:#050507}
-    body{background:#050507;color:#f4f4f5;min-height:100vh;overflow-x:hidden}
-    @media(hover:hover){body{cursor:none}}
-    #orb{position:fixed;width:160px;height:160px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%);mix-blend-mode:screen;transition:opacity .4s;opacity:0}
-    #dot{position:fixed;width:5px;height:5px;border-radius:50%;background:rgba(139,92,246,.5);pointer-events:none;z-index:10000;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(139,92,246,.3);transition:opacity .4s;opacity:0}
-    @media(hover:none){#orb,#dot{display:none}}
-    #page{position:relative;margin:0 auto}
-    .ln{position:absolute;white-space:pre;pointer-events:none}
-    #vignette{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9997;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4) 100%)}
+    :root { --ink:#10110f; --paper:#f3f0e8; --muted:#a8aaa0; --quiet:#777a70; --line:rgba(243,240,232,.15); --card:#1a1c18; --lime:#d9f36a; --orange:#ff9e66; --blue:#9fc4ff; --max:1180px; }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{margin:0;color:var(--paper);background:radial-gradient(circle at 84% 2%,rgba(217,243,106,.1),transparent 24rem),var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+    a{color:inherit} a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:5px}
+    .skip-link{position:absolute;left:1rem;top:-5rem;z-index:10;padding:.7rem 1rem;background:var(--lime);color:var(--ink)} .skip-link:focus{top:1rem}
+    .wrap{width:min(var(--max),calc(100% - 3rem));margin-inline:auto}
+    .mono,.eyebrow,.tag,.meta,.year,.section-number{font-family:"DM Mono",ui-monospace,monospace}
+    .eyebrow,.section-number{color:var(--lime);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+    header{border-bottom:1px solid var(--line)} .nav{min-height:5.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .mark{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:-.04em;text-decoration:none}.mark span{color:var(--lime)}
+    nav ul{display:flex;gap:1.5rem;padding:0;margin:0;list-style:none} nav a{color:var(--muted);font-size:.86rem;text-decoration:none} nav a:hover{color:var(--lime)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:5rem;align-items:end;padding:clamp(4rem,11vw,9rem) 0 7rem}
+    .hero h1{max-width:760px;margin:.7rem 0 1.3rem;font-family:"Space Grotesk",sans-serif;font-size:clamp(3.7rem,9.6vw,8rem);line-height:.9;letter-spacing:-.075em}.hero h1 em{color:var(--lime);font-style:normal}
+    
+    .hero-lede{max-width:690px;margin:0;color:var(--muted);font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.45}.hero-links{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:2rem}
+    .button{display:inline-flex;align-items:center;gap:.55rem;padding:.72rem 1rem;border:1px solid var(--line);border-radius:999px;color:var(--paper);font-size:.84rem;text-decoration:none;transition:background .2s,color .2s,border-color .2s}.button:hover{border-color:var(--lime);background:var(--lime);color:var(--ink)}
+    .portrait{position:relative;max-width:340px;justify-self:end}.portrait::before{content:"";position:absolute;inset:1rem -1rem -1rem 1rem;border:1px solid var(--lime);opacity:.55}.portrait img{position:relative;display:block;width:100%;aspect-ratio:1;object-fit:cover;filter:saturate(.86)}.portrait figcaption{position:relative;padding-top:.8rem;color:var(--quiet);font-size:.75rem}
+    .signal{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}.signal-item{padding:1.35rem 1.5rem 1.4rem 0;border-right:1px solid var(--line)}.signal-item:not(:first-child){padding-left:1.5rem}.signal-item:last-child{border-right:0}.signal strong{display:block;color:var(--lime);font-family:"Space Grotesk",sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1}.signal span{display:block;margin-top:.45rem;color:var(--muted);font-size:.86rem}
+    .flagship{padding:5.5rem 0 2rem}.flagship-card{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:2rem;padding:2rem;border:1px solid rgba(159,196,255,.55);background:linear-gradient(115deg,rgba(159,196,255,.15),transparent 62%),var(--card)}.flagship-card h2{margin:.65rem 0 .8rem;font-size:clamp(2.2rem,5vw,4.2rem)}.flagship-card p{max-width:760px;margin:0;color:var(--muted);font-size:1.05rem}.flagship-side{align-self:end;padding-top:1rem;border-top:1px solid rgba(159,196,255,.35);color:var(--blue);font-family:"DM Mono",monospace;font-size:.76rem;line-height:1.6}
+    section{padding:7rem 0}.section-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.4rem}h2{margin:0;font-family:"Space Grotesk",sans-serif;font-size:clamp(2rem,4vw,3.5rem);line-height:1;letter-spacing:-.06em}.intro{max-width:700px;margin:-1.2rem 0 2.6rem;color:var(--muted);font-size:1.05rem}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.about-grid p{margin:0;color:var(--muted);font-size:1.04rem}.about-grid p+p{margin-top:1.2rem}.quote{align-self:start;padding:1.5rem;border-left:2px solid var(--lime);background:var(--card);color:var(--paper);font-family:"Space Grotesk",sans-serif;font-size:1.45rem;line-height:1.2}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.project{min-height:250px;display:flex;flex-direction:column;padding:1.5rem;border:1px solid var(--line);background:linear-gradient(140deg,rgba(255,255,255,.035),transparent 60%),var(--card);transition:transform .2s,border-color .2s}.project:hover{transform:translateY(-4px);border-color:rgba(217,243,106,.65)}.project.featured{grid-column:span 2;min-height:310px;border-color:rgba(217,243,106,.4);background:linear-gradient(115deg,rgba(217,243,106,.12),transparent 55%),var(--card)}
+    .project-top{display:flex;justify-content:space-between;gap:1rem;align-items:start}.tag{color:var(--orange);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.project h3{margin:.5rem 0 .7rem;font-family:"Space Grotesk",sans-serif;font-size:1.65rem;line-height:1.05;letter-spacing:-.04em}.project p{max-width:650px;margin:0;color:var(--muted)}.project-link{margin-top:auto;padding-top:1.6rem;color:var(--lime);font-family:"DM Mono",monospace;font-size:.78rem;text-decoration:none}.project-link:hover{text-decoration:underline;text-underline-offset:.25rem}
+    .timeline{border-top:1px solid var(--line)}.role{display:grid;grid-template-columns:180px 1fr;gap:2rem;padding:1.7rem 0;border-bottom:1px solid var(--line)}.year{color:var(--lime);font-size:.76rem;line-height:1.45}.role h3{margin:0;font-family:"Space Grotesk",sans-serif;font-size:1.35rem;letter-spacing:-.03em}.role h3 span{color:var(--muted);font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:400}.role p{max-width:720px;margin:.45rem 0 0;color:var(--muted)}
+    .research{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.research-card{padding:1.6rem;border:1px solid var(--line);background:var(--card)}.research-card h3{margin:.7rem 0 .6rem;font-family:"Space Grotesk",sans-serif;font-size:1.5rem;letter-spacing:-.04em}.research-card p{margin:0;color:var(--muted)}.research-card .project-link{display:inline-block}.research-card:first-child{border-color:rgba(159,196,255,.4);background:linear-gradient(145deg,rgba(159,196,255,.11),transparent 60%),var(--card)}
+    .skills{display:flex;flex-wrap:wrap;gap:.55rem;max-width:920px}.skill{padding:.55rem .8rem;border:1px solid var(--line);color:var(--muted);font-family:"DM Mono",monospace;font-size:.75rem}.skill:hover{border-color:var(--lime);color:var(--lime)}.closing{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding:2rem 0 6rem}.closing h2{max-width:650px}.closing p{max-width:520px;margin:1rem 0 0;color:var(--muted)}footer{padding:1.2rem 0 2rem;border-top:1px solid var(--line);color:var(--quiet);font-size:.78rem}footer .wrap{display:flex;justify-content:space-between;gap:1rem}footer a{color:var(--muted)}
+    @media(max-width:760px){.wrap{width:min(100% - 2rem,var(--max))}.nav{min-height:4.5rem}nav ul{gap:.7rem}nav a{font-size:.75rem}.hero{grid-template-columns:1fr;gap:3rem;padding:5rem 0 4rem}.portrait{width:min(68vw,280px);justify-self:start}.signal{grid-template-columns:1fr}.signal-item,.signal-item:not(:first-child){padding:1.1rem 0;border-right:0;border-bottom:1px solid var(--line)}.signal-item:last-child{border-bottom:0}section{padding:5rem 0}.about-grid,.research{grid-template-columns:1fr}.projects{grid-template-columns:1fr}.project.featured{grid-column:span 1}.role{grid-template-columns:1fr;gap:.6rem}.closing{grid-template-columns:1fr;align-items:start;padding-bottom:4rem}footer .wrap{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project,.button{transition:none}}
   </style>
 </head>
 <body>
-  <div id="vignette"></div>
-  <div id="orb"></div>
-  <div id="dot"></div>
-  <div id="page"></div>
-
-  <script type="module">
-    import{prepareWithSegments,layoutNextLine}from'https://esm.sh/@chenglou/pretext@0.0.3'
-
-    const rgb=c=>`rgb(${c[0]},${c[1]},${c[2]})`
-    const C_W=[244,244,245],C_B=[161,161,170],C_M=[113,113,122],C_D=[82,82,91],C_V=[139,92,246]
-    const INTER=(s,w=400)=>`${w===700?'bold ':w===600?'600 ':''}${s}px Inter`
-    const GEIST=s=>`${s}px "Geist Mono"`
-    const lerp=(a,b,t)=>a+(b-a)*t,clamp=(v,l,h)=>Math.max(l,Math.min(h,v))
-    const M=()=>innerWidth<520
-
-    function makeBlocks(){
-      const m=M(),bs=m?13:14,blh=m?20:22,hs=15,hlh=m?20:22
-      const ms=m?11:13,mlh=m?18:22,sg=m?32:44,ig=m?18:22
-      return[
-        {t:'Roman (Romy) Mondello',f:INTER(m?26:36,700),lh:m?34:44,c:C_W,mb:m?6:10},
-        {t:'Senior Full-Stack Engineer \u2014 Agent Systems, Developer Tooling, and AI Infrastructure',f:INTER(m?14:16),lh:m?20:24,c:C_B,mb:m?4:6},
-        {t:'Less noise. More signal.',f:INTER(m?12:14),lh:m?18:22,c:C_M,mb:m?4:6},
-        {t:'Somerville, MA \u00b7 Remote (US) \u00b7 Boston/Cambridge hybrid',f:INTER(m?12:14),lh:m?18:22,c:C_M,mb:sg},
-        {t:'SUMMARY',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'Senior full-stack engineer with a 6-year professional engineering track record across fintech, DeFi, and AI. Former Staff Software Engineer at Knox Financial (multi-tenant SaaS, distributed Postgres pipelines, backend team leadership). Most recently consulted at Further (withfurther.com) shipping LangGraph agent pipelines against Zillow and mortgage APIs \u2014 forward-deployed delivery against regulated-vertical correctness constraints. Since May 2025, architecting and shipping a production agent-economic stack on Base mainnet: consensus-hq/agent-pulse is a 562 MB, 64-package TypeScript monorepo with 2,800+ merges and 328 tests, pushed daily. Hackathon organizer (HackWIT, MLH \u2014 2019). Ship code, run services, handle customers.',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'EXPERIENCE',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'Further (withfurther.com) \u00b7 Consultant, Research Engineer \u00b7 March 2025 \u2013 May 2025',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Shipped LangGraph agent pipelines integrated with Zillow and mortgage APIs for financial-planning workflows. Productionized research-team code with typed state schemas, tool-use orchestration, retrieval-augmented generation, and deterministic controllers for sizing and risk. Regulated-vertical correctness constraints.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Pillzumi \u00b7 ML Engineer \u00b7 December 2024 \u2013 February 2025',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Built long-running autonomous social agents on Twitter/X via elizaOS. Prompt engineering, action frameworks, persistent memory, message routing under API rate limits. Shipped as continuously running services.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Verizon \u00b7 Customer Solutions, Verizon Business \u00b7 April 2024 \u2013 December 2024',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Customer-facing technical role on the Verizon Business team. Owned a CRM-driven book of business \u2014 pipeline hygiene, customer discovery, solution design across the Verizon Business product surface, and closing cycles with small and mid-market accounts. Daily fluency with CRM/pipeline tooling, enterprise software stacks, and technical-consultative customer conversations. Direct transferable experience for Forward-Deployed Engineer, Solutions Engineer, and Customer Engineer roles.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Verus AI \u00b7 Data Scientist \u00b7 2022 \u2013 2023',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Ethereum analytics and forecast models in production. LLM-based automation of product-facing analysis. Training, deployment, and monitoring across a live DeFi analytics product.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Knox Financial \u00b7 Staff Software Engineer \u00b7 2020 \u2013 2021',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Backend infrastructure for a multi-tenant real-estate investment SaaS. Owned distributed data ingestion pipelines, Postgres-backed forecasting services, REST APIs consumed by web clients. Hardened CI/CD reliability, cut flaky-test noise, introduced deploy gates that reduced production regressions. Mentored engineers, ran design reviews, set code-review standards.',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'INDEPENDENT WORK \u2014 MAY 2025 TO PRESENT',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'Operating an agent-economic infrastructure stack across two GitHub organizations. 60+ packages, live deployments on Base mainnet, published npm surfaces.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'SigilX \u2014 Decentralized certification protocol on Base \u00b7 sigilx.xyz',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'A protocol for certifying verifiable work (Lean 4 proofs, smart contracts, AI outputs) on-chain. Evaluator-staking contracts (ERC-8183) with commit-reveal voting and VRF-selected committees on Base mainnet. SIGILX token for staking and governance, USDC-settled certificates, Privy smart wallets with delegated agent mode, Uniswap V4 bonding curve hook for protocol-owned liquidity. Shipped as reusable packages: Claude Code integration, elizaOS plugin, Hermes agent, VSCode extension, public skill. Live at sigilx.xyz. Certificate registry on Base mainnet.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Agent Pulse \u2014 On-chain liveness protocol for AI agents \u00b7 x402pulse.xyz',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'The scale artifact. consensus-hq/agent-pulse is a 562 MB TypeScript monorepo with 64 packages, 328 tests, 2,800+ merge commits, and active daily pushes. Covers: smart contracts, SDK, elizaOS plugin, wallet guardian, MEV bot, alerts/filters, pod-delivery middleware, x402-paid analytics, and an 11-service Janus execution platform (policy engine, secret broker, signer service, session fabric, responses API, trace ingestor, simulation service, checkpoint service, runtime adapter, artifact API, model broker, egress proxy). Live on Base mainnet.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'SpendOS \u2014 Autonomous agent spending governance \u00b7 spendos.xyz',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Autonomous agent that earns USDC via x402 pay-per-call endpoints, self-funds its own Venice AI inference via EIP-3009 top-ups, and proposes investments under OWS delegation policies \u2014 never spends without owner approval. On-chain Solidity audit trail, property-fuzz tested.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'x402janus \u2014 Wallet security and agent-facing paid APIs \u00b7 x402janus.com',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Wallet security scans, approval inventory, and revoke flows for agent wallets. x402-paid API surface for agents to consume via HTTP 402 micropayments. ZK component for private attestation.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'consensus-cli \u2014 Local-first agent observability \u00b7 npx consensus-cli',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Published npm package (v0.1.6). 8,000+ lines of TypeScript. Live isometric browser atlas of Codex, OpenCode, and Claude Code sessions. Event-driven detection, Claude hook pipeline, OpenCode server integration. No hosted service, no API keys, no vendor lock-in.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'mondello.dev \u2014 Agent-discoverable technical blog \u00b7 mondello.dev',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Personal engineering blog engineered as an agent-accessible surface: llms.txt manifest, RSS, full-text search, and paid discovery endpoints. Other agents can query my writing over HTTP 402. Runs on Cloudflare Workers with transactional email, podcast feed, and a smoke-test pipeline gating every deploy.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'OpenClaw agent skill library \u2014 20+ published skills',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Aave V3, Uniswap V4, Safe Multisig, BaseScan, Chainlink price feeds, Tenderly simulation, ENS, IPFS-pin, Farcaster, NFT mint, Discord/Telegram bots, Golem Compute, CrewAI and LangChain tool wrappers, and more. TypeScript-first, strict-mode, preflight-gated.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Connie \u2014 Autonomous engineering bot',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Autonomous engineering bot running on my own infrastructure. Used internally to ship and operate products end-to-end across the Consensus HQ org.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'Vouch \u2014 Builder staking and verification',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Builder-to-agent verification service with Solidity contracts and domain logic.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'EdgeKit \u2014 On-device inference on Apple Silicon',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'On-device AI runtime stack using Core ML, MLX, Swift, and C++ for low-latency inference on Apple Silicon.',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'TECHNICAL',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        ...(m?[
-          {t:'TypeScript \u00b7 JavaScript \u00b7 Python \u00b7 Solidity \u00b7 Swift \u00b7 C++ \u00b7 Rust \u00b7 Go \u00b7 Lean',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'React \u00b7 Next.js \u00b7 Tailwind \u00b7 shadcn/ui',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'Node.js \u00b7 Hono \u00b7 Express \u00b7 FastAPI \u00b7 Effect 3.x',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'LangGraph \u00b7 MCP \u00b7 elizaOS \u00b7 OpenClaw \u00b7 Claude/GPT tool-call routing',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'Core ML \u00b7 MLX \u00b7 Swift \u00b7 C++ (EdgeKit)',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'Foundry \u00b7 Solidity \u00b7 Privy \u00b7 XMTP \u00b7 x402 \u00b7 EIP-3009',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'World ID \u00b7 Uniswap V4 \u00b7 Aave V3 \u00b7 Safe Multisig \u00b7 Chainlink \u00b7 ERC-8183',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'Docker \u00b7 Kubernetes \u00b7 Railway \u00b7 Cloudflare Workers \u00b7 Base mainnet',f:GEIST(ms),lh:mlh,c:C_B,mb:4,mn:1},
-          {t:'Buildkite \u00b7 Vitest \u00b7 Playwright \u00b7 pnpm \u00b7 turbo \u00b7 Nix',f:GEIST(ms),lh:mlh,c:C_B,mb:sg,mn:1},
-        ]:[
-          {t:'Languages      TypeScript \u00b7 JavaScript \u00b7 Python \u00b7 Solidity \u00b7 Swift \u00b7 C++ \u00b7 Rust \u00b7 Go \u00b7 Lean',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'Frontend       React \u00b7 Next.js \u00b7 Tailwind \u00b7 shadcn/ui',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'Backend        Node.js \u00b7 Hono \u00b7 Express \u00b7 FastAPI \u00b7 Effect 3.x',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'AI / Agents    LangGraph \u00b7 MCP \u00b7 elizaOS \u00b7 OpenClaw \u00b7 Claude/GPT tool-call routing \u00b7 RAG \u00b7 deterministic agent controllers',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'On-device AI   Core ML \u00b7 MLX \u00b7 Swift \u00b7 C++ (EdgeKit)',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'Blockchain     Foundry \u00b7 Solidity \u00b7 Privy \u00b7 XMTP \u00b7 x402 \u00b7 EIP-3009 \u00b7 World ID \u00b7 Uniswap V4 \u00b7 Aave V3 \u00b7 Safe Multisig \u00b7 Chainlink \u00b7 ENS \u00b7 ERC-8183',f:GEIST(ms),lh:mlh,c:C_B,mb:5,mn:1},
-          {t:'Infrastructure Docker \u00b7 Kubernetes \u00b7 Railway \u00b7 Supabase \u00b7 Cloudflare Workers \u00b7 Base mainnet \u00b7 Buildkite CI \u00b7 Vitest \u00b7 Playwright \u00b7 pnpm \u00b7 turbo \u00b7 Nix',f:GEIST(ms),lh:mlh,c:C_B,mb:sg,mn:1},
-        ]),
-        {t:'COMMUNITY \u0026 LEADERSHIP',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'HackWIT (Wentworth Institute of Technology) \u00b7 Organizer \u00b7 2019',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Co-organized the Wentworth Institute of Technology hackathon in Boston. Programming, sponsor logistics, participant onboarding, judging coordination.',f:INTER(bs),lh:blh,c:C_B,mb:ig},
-        {t:'MLH Hackathon Event \u00b7 Organizer \u00b7 2019',f:INTER(hs,600),lh:hlh,c:C_W,mb:m?4:5},
-        {t:'Organizing team for a Major League Hacking sanctioned event. MLH is the official student hackathon league; sanctioned events meet MLH\u2019s production and code-of-conduct standards.',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'EDUCATION',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'Associate of Science, Computer Science \u00b7 Bunker Hill Community College \u00b7 Dean\u2019s List',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'HACKATHONS',f:INTER(m?10:11,600),lh:16,c:C_M,ls:'0.1em',mb:m?14:18},
-        {t:'OWS Hackathon 2026 \u2014 SpendOS (4 tracks)',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
-        {t:'Clawd.kitchen \u2014 2nd place',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
-        {t:'OpenAI Parameter Golf \u2014 notable submission',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
-        {t:'Worldchain \u00d7 Coinbase',f:INTER(bs),lh:blh,c:C_B,mb:m?4:5},
-        {t:'Synthesis',f:INTER(bs),lh:blh,c:C_B,mb:sg},
-        {t:'Layout powered by Pretext',f:INTER(m?10:11),lh:m?16:18,c:C_D,mb:m?40:64},
-      ]
-    }
-
-    let mx=-9999,my=-9999,onScreen=false,smx=-9999,smy=-9999,isTouch=false
-    const CPAD=12,MSLOT=40
-    function CR(){return isTouch?50:70}
-    const page=document.getElementById('page'),orbEl=document.getElementById('orb'),dotEl=document.getElementById('dot')
-    function colW(){const v=innerWidth;return v<520?v-32:v<768?v-64:Math.min(640,v-120)}
-    function colL(){return Math.max(16,(innerWidth-colW())/2)}
-
-    let prepared=[]
-    function prepareAll(){prepared=makeBlocks().map(b=>({...b,prep:prepareWithSegments(b.t,b.f)}))}
-
-    function circIv(cx,cy,r,bt,bb){
-      const p=CPAD,t=bt-p,b=bb+p
-      if(t>=cy+r||b<=cy-r)return null
-      const dy=(cy>=t&&cy<=b)?0:(cy<t?t-cy:cy-b)
-      if(dy>=r)return null
-      const hw=Math.sqrt(r*r-dy*dy)
-      return{left:cx-hw-p,right:cx+hw+p}
-    }
-    function carve(bl,br,blocked){
-      let s=[{left:bl,right:br}]
-      for(const b of blocked){const n=[];for(const sl of s){if(b.right<=sl.left||b.left>=sl.right){n.push(sl);continue};if(b.left>sl.left)n.push({left:sl.left,right:b.left});if(b.right<sl.right)n.push({left:b.right,right:sl.right})};s=n}
-      return s.filter(x=>x.right-x.left>=MSLOT)
-    }
-
-    const pool=[];let pi=0
-    function sp(){if(pi<pool.length)return pool[pi++];const e=document.createElement('span');e.className='ln';page.appendChild(e);pool.push(e);pi++;return e}
-    function hide(){for(let i=pi;i<pool.length;i++){pool[i].style.opacity='0';pool[i].textContent=''}}
-
-    function glow(bc,lx,ly){
-      if(!onScreen)return{color:rgb(bc),shadow:''}
-      const dx=lx-smx,dy=ly-smy,d=Math.sqrt(dx*dx+dy*dy)
-      const t=clamp(1-d/250,0,1),t2=t*t
-      if(t2<.01)return{color:rgb(bc),shadow:''}
-      return{color:`rgb(${Math.round(lerp(bc[0],C_V[0],t2))},${Math.round(lerp(bc[1],C_V[1],t2))},${Math.round(lerp(bc[2],C_V[2],t2))})`,shadow:`0 0 ${6*t2}px rgba(139,92,246,${.4*t2})`}
-    }
-
-    function layoutAll(){
-      pi=0;const cw=colW(),cl=colL(),cr=CR()
-      let y=M()?48:80
-      for(const block of prepared){
-        const{prep,f,lh,c,mb,ls,mn}=block
-        let cur={segmentIndex:0,graphemeIndex:0},lineY=y,done=false
-        while(!done){
-          const blocked=[]
-          if(onScreen){const iv=circIv(smx,smy,cr,lineY,lineY+lh);if(iv)blocked.push(iv)}
-          const slots=carve(cl,cl+cw,blocked)
-          if(slots.length===0){lineY+=lh;if(lineY>y+2000)break;continue}
-          for(const slot of slots){
-            const line=layoutNextLine(prep,cur,slot.right-slot.left)
-            if(!line){done=true;break}
-            const el=sp();el.textContent=line.text
-            const{color:col,shadow}=glow(c,slot.left+line.width/2,lineY+lh/2)
-            el.style.cssText=`position:absolute;left:${slot.left}px;top:${lineY}px;font:${f};color:${col};white-space:pre;opacity:1;pointer-events:none`
-            if(shadow)el.style.textShadow=shadow
-            if(ls)el.style.letterSpacing=ls
-            if(mn)el.style.fontFamily='"Geist Mono",monospace'
-            cur=line.end
-          }
-          lineY+=lh
-        }
-        y=lineY+(mb||0)
-      }
-      page.style.height=y+'px';hide()
-    }
-
-    function tick(){
-      if(onScreen){smx=lerp(smx,mx,.15);smy=lerp(smy,my,.15)}
-      else{smx=lerp(smx,-9999,.08);smy=lerp(smy,-9999,.08)}
-      layoutAll();requestAnimationFrame(tick)
-    }
-
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY+scrollY;onScreen=true;isTouch=false;if(smx<-1000){smx=mx;smy=my};orbEl.style.left=e.clientX+'px';orbEl.style.top=e.clientY+'px';orbEl.style.opacity='1';dotEl.style.left=e.clientX+'px';dotEl.style.top=e.clientY+'px';dotEl.style.opacity='1'})
-    document.addEventListener('mouseleave',()=>{mx=-9999;my=-9999;onScreen=false;orbEl.style.opacity='0';dotEl.style.opacity='0'})
-    document.addEventListener('touchstart',e=>{isTouch=true;const p=e.touches[0];mx=p.clientX;my=p.clientY+scrollY;onScreen=true;if(smx<-1000){smx=mx;smy=my}},{passive:true})
-    document.addEventListener('touchmove',e=>{const p=e.touches[0];mx=p.clientX;my=p.clientY+scrollY;onScreen=true;isTouch=true;if(smx<-1000){smx=mx;smy=my}},{passive:true})
-    document.addEventListener('touchend',()=>{mx=-9999;my=-9999;onScreen=false})
-
-    document.fonts.ready.then(()=>{prepareAll();requestAnimationFrame(tick);let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(prepareAll,150)})})
-  </script>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header><div class="wrap nav"><a class="mark" href="#top" aria-label="Romy Mondello home">RM<span>↗</span></a><nav aria-label="Primary navigation"><ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></nav></div></header>
+  <main id="main"><div class="wrap" id="top">
+    <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">AI / systems / research</p><h1 id="hero-title">Romy<br><em>Mondello.</em></h1><p class="hero-lede">Senior AI and systems engineer, founder, and independent researcher. Building AI systems since 2017, I work on agent infrastructure, developer tools, formal proofs, and scientific systems whose behavior can be inspected.</p><div class="hero-links" role="group" aria-label="Profile links"><a class="button" href="https://github.com/integrate-your-mind" rel="me">GitHub <span aria-hidden="true">↗</span></a><a class="button" href="https://www.linkedin.com/in/romy-m-08621b168/" rel="me">LinkedIn <span aria-hidden="true">↗</span></a><a class="button" href="https://arxiv.org/abs/2608.02634">Read the paper <span aria-hidden="true">↗</span></a></div></div><figure class="portrait"><img src="" alt=""><figcaption>Somerville, Massachusetts · remote US / Boston-Cambridge hybrid</figcaption></figure></section>
+    <div class="signal" role="group" aria-label="Selected profile facts"><div class="signal-item"><strong>2017</strong><span>deep learning origin: Atari 2600 actor-critic agents and 6502 assembly</span></div><div class="signal-item"><strong>2019</strong><span>GPT-era language models, followed by GPT-3 beta work and AI engineering at Knox in 2020</span></div><div class="signal-item"><strong>6 yrs</strong><span>professional software engineering, beginning at Knox Financial in 2020</span></div></div>
+    <section class="flagship" id="research" aria-labelledby="flagship-title"><div class="flagship-card"><div><p class="eyebrow">Flagship research · arXiv preprint</p><h2 id="flagship-title">A dimension-two counterexample in characteristic two.</h2><p>I authored a preprint giving a dimension-two counterexample to the <em>separable</em> Jacobian conjecture in characteristic two, with an explicit polynomial map, Jacobian determinant 1, separable degree 3, and a three-point fiber. I formalized the full result in Lean 4 / Mathlib with kernel-checked evidence.</p><a class="project-link" href="https://arxiv.org/abs/2608.02634">Read arXiv:2608.02634 ↗</a></div><div class="flagship-side">Lean 4 / Mathlib<br>dimension two<br>characteristic two<br>separable case</div></div></section>
+    <section id="about" aria-labelledby="about-title"><div class="section-head"><span class="section-number">01</span><h2 id="about-title">A builder with a proof instinct.</h2></div><div class="about-grid"><div><p>I started taking computers apart and rebuilding them at seven, learning PHP and running a World of Warcraft phpBB forum at eleven, and using VMware at fourteen. I started deep learning work in 2017 with Atari 2600 actor-critic agents and 6502 assembly, then moved into GPT-era language models in 2019, including GPT-3 beta work and AI engineering at Knox Financial in 2020.</p><p>At Further, I designed the LangGraph architecture and shipped typed workflows around Zillow and mortgage APIs, with retrieval, tool orchestration, and deterministic controls around sizing and risk. At Knox Financial, I built housing search, distributed ingestion, PostgreSQL services, REST APIs, funnel instrumentation, and CI/CD controls.</p></div><div><p>I now build an agent-infrastructure startup and my own agent harness. My work spans multi-provider OpenClaw operations through Connie, Agent Pulse and SigilX, x402 payment admission, Axiom-RS, Ferrite’s Rust-first web framework, Ferrum’s JavaScript runtime, and supervision, observability, and memory tooling.</p><p>My working loop is simple: define the contract, build the system, inspect the evidence, test the failure paths, and describe the boundary honestly.</p></div></div></section>
+    <section id="work" aria-labelledby="work-title"><div class="section-head"><span class="section-number">02</span><h2 id="work-title">Selected work.</h2></div><p class="intro">A focused set of public artifacts and clearly labeled independent prototypes across agents, runtimes, developer tools, and embodied research.</p><div class="projects">
+      <article class="project featured"><div class="project-top"><span class="tag">Adaptive controller research · Python / MLX</span><span class="mono">166,700 neurons</span></div><h3>FruitFlyGPT</h3><p>Building and testing a connectome-constrained adaptive controller: a 166,700-neuron MaleCNS v1.0 graph with 25.58 million signed sparse edges, DoOR-derived OCT/MCH inputs, dopamine-gated eligibility at 2,891 KC→MBON contacts, custom MLX/Metal CSR execution on Apple Silicon, frozen controls, telemetry, and a FlyGym/MuJoCo path toward closed-loop control.</p><span class="project-link">Research implementation · adaptive systems</span></article>
+      <article class="project"><div class="project-top"><span class="tag">Scientific computing · Three.js + TypeScript</span></div><h3>OpenTorus / Lab</h3><p>Interactive D–T tokamak research model with deterministic 0D plasma dynamics, explicit thermal and electric accounting, scenario controls, live diagnostics, JSON/CSV exports, and a Lean-checked ledger of exact accounting identities.</p><span class="project-link">Research model · reviewable by design</span></article>
+      <article class="project"><div class="project-top"><span class="tag">Public prototype · Rust + TypeScript</span></div><h3>Ferrite</h3><p>A Rust-first experiment toward a React-like UI runtime and Next.js-like application framework, with server rendering, file-system routing, client hydration, artifact builds, and TypeScript-facing APIs.</p><a class="project-link" href="https://github.com/integrate-your-mind/ferrite">View repository ↗</a></article>
+      <article class="project"><div class="project-top"><span class="tag">Developer tooling · TypeScript</span></div><h3>Consensus CLI</h3><p>Local-first observability for Codex, OpenCode, and Claude Code sessions: event-driven activity state, provider adapters, hooks, redaction, metrics, and a browser dashboard.</p><a class="project-link" href="https://github.com/integrate-your-mind/consensus-cli">View repository ↗</a></article>
+      <article class="project"><div class="project-top"><span class="tag">Agent infrastructure · OpenClaw / x402</span></div><h3>Connie · Agent Pulse · SigilX</h3><p>Custom multi-provider agent operations through OpenClaw: persistent memory, scheduled workflows, scoped skills, queues, session isolation, liveness routing, payment admission, and proof-oriented services across OpenAI, Claude, MiniMax, Kimi, and Grok.</p><a class="project-link" href="https://github.com/sigilxyz/sigilx-skill">SigilX public skill ↗</a></article>
+      <article class="project"><div class="project-top"><span class="tag">Agent systems · Temporal + PostgreSQL</span></div><h3>Agent Cloud + Axiom-RS</h3><p>Cofounding a continuous, scalable distributed work system with Temporal-coordinated, PostgreSQL-authoritative runs, durable outbox start-or-join, fenced execution, cancellation sequencing, isolated Docker/QQ workers, broker-mediated model access, protected verification, persisted evidence, skills, plugins, and guardrails.</p><span class="project-link">Independent systems · contract-first</span></article>
+    </div></section>
+    <section id="experience" aria-labelledby="experience-title"><div class="section-head"><span class="section-number">03</span><h2 id="experience-title">Experience.</h2></div><div class="timeline">
+      <article class="role"><div class="year">MAY 2025 — NOW</div><div><h3>Agent Cloud <span>· Cofounder / systems engineer</span></h3><p>Building a continuous, scalable distributed work system around useful-work state, Temporal orchestration, PostgreSQL authority, fenced execution, durable cancellation, audit and security controls, skills, plugins, guardrails, and evidence-led release decisions. The wider independent portfolio includes formal verification, Rust systems, and scientific computing research.</p></div></article>
+      <article class="role"><div class="year">MAR — MAY 2025</div><div><h3>Further <span>· Consultant, Research Engineer · contract</span></h3><p>Designed and shipped typed LangGraph workflows around Zillow and mortgage APIs, with retrieval, tool orchestration, and deterministic controls around sizing and risk. Helped teammates adopt Cursor and contributed AI Genius UI improvements.</p></div></article>
+      <article class="role"><div class="year">DEC 2024 — FEB 2025</div><div><h3>Pillzumi <span>· Machine Learning Engineer · contract</span></h3><p>Built long-running elizaOS social-agent integrations across WebRTC and X/Twitter direct-message workflows, with persistent memory, action frameworks, and API-rate-limit handling.</p></div></article>
+      <article class="role"><div class="year">APR — DEC 2024</div><div><h3>Verizon Business <span>· Customer Solutions</span></h3><p>Owned a CRM book of business in a technical-consultative B2B motion, covering discovery, solution design, customer engineering conversations, and closing across Verizon Business product surfaces.</p></div></article>
+      <article class="role"><div class="year">2022 — 2023</div><div><h3>Verus AI <span>· Data Scientist</span></h3><p>Built GCP ingestion and automation feeding BigQuery and Vertex AI workflows; trained predictive models and monitored model and data quality for a live analytical product.</p></div></article>
+      <article class="role"><div class="year">JUL 2020 — MAR 2021</div><div><h3>Knox Financial <span>· Backend Software Engineer</span></h3><p>Built customer-facing housing search, distributed ingestion, PostgreSQL services, REST APIs, funnel instrumentation, and forecast visuals. Hardened CI/CD, reduced flaky-test noise, introduced deploy gates, reviewed backend code, and mentored junior engineers.</p></div></article>
+    </div></section>
+    <section id="research-threads" aria-labelledby="research-title"><div class="section-head"><span class="section-number">04</span><h2 id="research-title">Research threads.</h2></div><p class="intro">Scientific computing, formal methods, and security research connected by a practical interest in systems that accomplish clear goals.</p><div class="research">
+      <article class="research-card"><span class="tag">Scientific computing</span><h3>Connectomes, fusion, and quantitative models</h3><p>Biophysical computation, connectome-constrained simulation, nuclear-fusion models, quantitative analysis, and machine-learning trading systems.</p><span class="project-link">Research systems · Python / ML</span></article>
+      <article class="research-card"><span class="tag">Security research</span><h3>Adversarial systems and verification</h3><p>Code verification, exploit research, CTFs, prompt injection, and jailbreak evaluation, alongside the tools and review practices that make complex systems easier to understand.</p><span class="project-link">Security research · evidence-led</span></article>
+      <article class="research-card"><span class="tag">Quant research · ARM64</span><h3>Models, dashboards, and evaluation</h3><p>Built typed local trading dashboards and agent-control surfaces around Hyperliquid and Polymarket data; trained Apple Silicon models through PyTorch MPS and native MLX paths. Research records include a LightGBM 80-feature ladder over 435,279 out-of-sample rows and six purged walk-forward folds, plus first-passage Monte Carlo calibration over 796 OHLC windows. E-graph work evaluates factor deduplication and graph reasoning with statistical and cost gates.</p><span class="project-link">Research tooling · MPS / MLX</span></article>
+    </div></section>
+    <section aria-labelledby="skills-title"><div class="section-head"><span class="section-number">05</span><h2 id="skills-title">Tools I reach for.</h2></div><div class="skills"><span class="skill">TypeScript</span><span class="skill">JavaScript</span><span class="skill">Python</span><span class="skill">Rust</span><span class="skill">Go</span><span class="skill">Swift</span><span class="skill">C++</span><span class="skill">Lean 4</span><span class="skill">React / Next.js</span><span class="skill">Microservices / microfrontends</span><span class="skill">Node.js / Hono</span><span class="skill">FastAPI</span><span class="skill">Effect</span><span class="skill">LangGraph</span><span class="skill">MCP</span><span class="skill">OpenClaw</span><span class="skill">elizaOS</span><span class="skill">Core ML / MLX</span><span class="skill">ARM64-native MLX / MPS</span><span class="skill">PostgreSQL</span><span class="skill">Temporal</span><span class="skill">Docker / Kubernetes</span><span class="skill">Cloudflare Workers</span><span class="skill">Solidity / Foundry</span><span class="skill">x402</span><span class="skill">GitHub Actions</span></div></section>
+    <section class="closing" id="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Let’s build something legible.</p><h2 id="contact-title">Open to senior engineering and research roles.</h2><p>AI infrastructure, developer tools, formal verification, scientific computing, and technical product work.</p></div><div class="hero-links"><a class="button" href="https://github.com/integrate-your-mind" rel="me">GitHub ↗</a><a class="button" href="https://www.linkedin.com/in/romy-m-08621b168/" rel="me">LinkedIn ↗</a></div></section>
+  </div></main>
+  <footer><div class="wrap"><span>© Romy Mondello · built with HTML and CSS</span><a href="#top">Back to top ↑</a></div></footer>
 </body>
 </html>
