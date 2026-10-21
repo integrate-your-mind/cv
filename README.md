@@ -6,6 +6,6 @@ The site is intentionally plain HTML and CSS so it can be reviewed and hosted di
 
 ## Local review
 
-Open `index.html` directly in a browser or serve this directory with any static file server. Local assets are `` and `assets/Romy-Mondello-Resume.pdf`.
+Open `index.html` directly in a browser or serve this directory with any static file server. Local assets are `assets/portrait.png` and `assets/Romy-Mondello-Resume.pdf`.
 
 Live page: <https://integrate-your-mind.github.io/cv>
