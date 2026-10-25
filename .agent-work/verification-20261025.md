@@ -9,6 +9,8 @@ The edited links resolve with HTTP 200 on 2026-10-25:
 - `https://github.com/integrate-your-mind/ferrite`
 - `https://github.com/integrate-your-mind/consensus-cli`
 - `https://github.com/integrate-your-mind/chatindex`
+- `https://github.com/retsu-AI/qq/pull/333`
+- `https://github.com/retsu-AI/qq/pull/319`
 
 The JEV repository is the public `integrate-your-mind/jev-codex-plugin` source. Its current public description covers Codex and Claude Code workflows. QQ PR #72 is a merged contribution authored by `integrate-your-mind`.
 
