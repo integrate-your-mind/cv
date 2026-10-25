@@ -3,7 +3,7 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import BaseDocTemplate, Frame, KeepTogether, PageTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import BaseDocTemplate, Frame, Image, KeepTogether, PageTemplate, Paragraph, Spacer, Table, TableStyle
 
 OUTPUT = "assets/Romy-Mondello-Resume-2026-10.pdf"
 
@@ -104,10 +104,18 @@ def build():
     doc.addPageTemplates([PageTemplate(id="resume", frames=[frame], onPage=footer)])
 
     story = []
-    story.append(p("Romy Mondello", styles["Name"]))
-    story.append(p("AI AND FULL-STACK ENGINEER - AGENT INFRASTRUCTURE - DEVELOPER TOOLS", styles["Kicker"]))
+    mark = Image("assets/portrait.png", width=0.38 * inch, height=0.38 * inch)
+    header = Table([[mark, [p("Romy Mondello", styles["Name"]), p("AI AND FULL-STACK ENGINEER - AGENT INFRASTRUCTURE - DEVELOPER TOOLS", styles["Kicker"])]],], colWidths=[0.52 * inch, 6.0 * inch])
+    header.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+    ]))
+    story.append(header)
     story.append(p(
-        "Somerville, MA | Remote US | Boston/Cambridge hybrid | she/her<br/>"
+        "Somerville, MA | Remote US | Boston/Cambridge hybrid<br/>"
         "<a href='mailto:rmondello2629@gmail.com'>rmondello2629@gmail.com</a> | "
         "<a href='https://mondello.dev'>mondello.dev</a> | "
         "<a href='https://github.com/integrate-your-mind'>github.com/integrate-your-mind</a> | "
@@ -116,7 +124,7 @@ def build():
     ))
     story.append(p(
         "AI, full-stack, and systems engineer with six years of professional software-engineering experience since joining Knox Financial in 2020. "
-        "I build agent systems and the infrastructure they run on, with public work spanning JEV workflows for Codex and Claude Code, attributable QQ runtime contributions, Rust systems, and formal verification. "
+        "I build agent systems and the infrastructure they run on, with public work spanning JEV workflows for Codex and Claude Code, QQ runtime contributions, Rust systems, and formal verification. "
         "Earlier independent AI work began with deep learning in 2017 and language models around 2019, including GPT-3 beta participation.",
         styles["Summary"],
     ))
@@ -124,12 +132,12 @@ def build():
     story.append(p("Independent product engineering and open source", styles["Section"]))
     story.append(role(styles, "Independent Product Engineering / Open Source", "May 2025 - present", [
         "Built <b>JEV Workflows</b>, a public open-source plugin for Codex and Claude Code that provides typed decision consultation, failure diagnosis, and evidence-based completion review. Model recommendations remain advisory and separate from permission to act.",
-        "Contributed to the open-source Rust QQ coding-agent harness in merged PRs <a href='https://github.com/retsu-AI/qq/pull/333'>#333</a>, <a href='https://github.com/retsu-AI/qq/pull/319'>#319</a>, and <a href='https://github.com/retsu-AI/qq/pull/72'>#72</a>, covering session-history recovery after held-tool cancellation or restart, shared JEV protocol validation, review checkpoints, and provider-neutral reasoning-effort settings. These are attributable contributions, not sole authorship of QQ.",
-        "Co-developing a bounded local agent-execution prototype with a cofounder. It explores Temporal coordination, PostgreSQL run state, isolated workers, explicit cancellation controls, persisted evidence, and guarded verification. It is not a production or customer-acceptance claim.",
+        "Contributed to the open-source Rust QQ coding-agent harness in merged PRs <a href='https://github.com/retsu-AI/qq/pull/333'>#333</a>, <a href='https://github.com/retsu-AI/qq/pull/319'>#319</a>, and <a href='https://github.com/retsu-AI/qq/pull/72'>#72</a>, covering session-history recovery after held-tool cancellation or restart, shared JEV protocol validation, review checkpoints, and provider-neutral reasoning-effort settings.",
+        "Co-developing a bounded local agent-execution prototype with a cofounder. It explores Temporal coordination, PostgreSQL run state, isolated workers, explicit cancellation controls, persisted evidence, and guarded verification.",
         "Built Ferrite, a public Rust-first TypeScript application-framework prototype with server-side rendering, file-system routing, artifact serving, WASM and Node bindings, and browser hydration."
     ]))
     story.append(role(styles, "Formal research", "Independent", [
-        "Authored a 10-page <a href='https://arxiv.org/abs/2608.02634'>arXiv preprint</a> giving a dimension-two counterexample to the separable Jacobian conjecture in characteristic two, with Jacobian determinant 1 and separable degree 3. Formalized the full theorem in Lean 4 and Mathlib with digest-locked sources and replay receipts. This scope is characteristic two, dimension two, and separable only.",
+        "Authored a 10-page <a href='https://arxiv.org/abs/2608.02634'>arXiv preprint</a> giving a dimension-two counterexample to the separable Jacobian conjecture in characteristic two, with Jacobian determinant 1 and separable degree 3. Formalized the full theorem in Lean 4 and Mathlib with digest-locked sources and replay receipts.",
     ]))
 
     story.append(p("Professional experience", styles["Section"]))
