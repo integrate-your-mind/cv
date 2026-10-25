@@ -1,0 +1,55 @@
+ Romy Mondello
+ AI AND FULL-STACK ENGINEER - AGENT INFRASTRUCTURE - DEVELOPER TOOLS
+ Somerville, MA | Remote US | Boston/Cambridge hybrid | she/her
+ rmondello2629@gmail.com | mondello.dev | github.com/integrate-your-mind | LinkedIn
+
+ AI, full-stack, and systems engineer with six years of professional software-engineering experience since joining Knox Financial in
+ 2020. I build agent systems and the infrastructure they run on, with public work spanning JEV workflows for Codex and Claude Code,
+ attributable QQ runtime contributions, Rust systems, and formal verification. Earlier independent AI work began with deep learning in
+ 2017 and language models around 2019, including GPT-3 beta participation.
+
+ Independent product engineering and open source
+                Independent Product Engineering / Open Source                                                                        May 2025 - present
+  - Built JEV Workflows, a public open-source plugin for Codex and Claude Code that provides typed decision consultation, failure diagnosis, and
+    evidence-based completion review. Model recommendations remain advisory and separate from permission to act.
+  - Contributed to the open-source Rust QQ coding-agent harness in merged PRs #333, #319, and #72, covering session-history recovery after held-tool
+    cancellation or restart, shared JEV protocol validation, review checkpoints, and provider-neutral reasoning-effort settings. These are attributable
+    contributions, not sole authorship of QQ.
+  - Co-developing a bounded local agent-execution prototype with a cofounder. It explores Temporal coordination, PostgreSQL run state, isolated workers,
+    explicit cancellation controls, persisted evidence, and guarded verification. It is not a production or customer-acceptance claim.
+  - Built Ferrite, a public Rust-first TypeScript application-framework prototype with server-side rendering, file-system routing, artifact serving, WASM and Node
+    bindings, and browser hydration.
+                Formal research                                                                                                              Independent
+  - Authored a 10-page arXiv preprint giving a dimension-two counterexample to the separable Jacobian conjecture in characteristic two, with Jacobian
+    determinant 1 and separable degree 3. Formalized the full theorem in Lean 4 and Mathlib with digest-locked sources and replay receipts. This scope is
+    characteristic two, dimension two, and separable only.
+
+ Professional experience
+               Further - Consultant, Research Engineer (contract)                                                         Feb 10 - Apr 14, 2025
+  - Co-designed the LangGraph agent and data-pipeline architecture with the CTO, then built Zillow and mortgage API pipelines with typed state, tool
+    orchestration, retrieval, and rule-based risk checks.
+  - Helped the team use Cursor and coding agents, and fixed LaTeX rendering and API timeouts in the AI Genius web app.
+               Pillzumi - Machine Learning Engineer (contract)                                                              Dec 2024 - Feb 2025
+  - Built long-running elizaOS social-agent integrations across WebRTC and X direct-message workflows, with persistent memory, action frameworks, and
+    API-rate-limit handling.
+               Verizon Business - Customer Solutions                                                                              Apr - Dec 2024
+  - Owned a CRM book of business in a technical-consultative B2B motion covering discovery, solution design, customer engineering conversations, and
+    closing.
+               Verus AI - Data Scientist                                                                                             2022 - 2023
+  - Built Google Cloud pipelines into BigQuery and Vertex AI, trained recurrent models for spend, usage, and customer-growth forecasting, and monitored
+    model and data quality.
+               Knox Financial - Backend Software Engineer                                                                    Jul 2020 - Mar 2021
+  - Built real-estate search on data feeds and AWS and Google APIs, distributed ingestion, PostgreSQL forecasting services, REST APIs, funnel
+    instrumentation, and forecast visuals.
+  - Hardened CI/CD, reduced flaky-test noise, introduced deploy gates, and reviewed backend code.
+
+            Education                                          Technical
+            Associate of Science, Computer Science             TypeScript, JavaScript, Python, Rust, Lean 4, Swift, Go | React, Next.js, Node.js,
+            Bunker Hill Community College - Dean's List        FastAPI, Axum | PostgreSQL, Temporal, Redis, Docker, AWS, GCP, BigQuery |
+                                                               LangGraph, OpenClaw, elizaOS, RAG, MLX, PyTorch/MPS
+
+
+
+
+Romy Mondello | AI and full-stack engineer | Public resume | October 2026                                                                                            1
+
